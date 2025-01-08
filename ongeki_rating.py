@@ -1,10 +1,12 @@
 import aiohttp
+import asyncio
 import base64
 import json
+import time
 
 from pathlib import Path
 from io import BytesIO
-from typing import List, Tuple, Union
+from typing import List, Optional, Tuple, Union
 
 from PIL import Image, ImageDraw, ImageFont
 from pydantic import BaseModel
@@ -12,7 +14,7 @@ from pydantic import BaseModel
 
 ROOT: Path = Path(__file__).parent
 STATIC: Path = ROOT / 'static'
-ONGEKI_DIR: Path = STATIC
+ONGEKI_DIR: Path = STATIC / 'ongeki'
 
 FONT_MEIRYO: Path =  STATIC / 'meiryo.ttc'
 FONT_SIYUAN: Path = STATIC / 'SourceHanSansSC-Bold.otf'
@@ -55,14 +57,6 @@ class DrawText:
             self._img.multiline_text((pos_x, pos_y), str(text), color, font, anchor, stroke_width=stroke_width, stroke_fill=stroke_fill)
         else:
             self._img.text((pos_x, pos_y), str(text), color, font, anchor, stroke_width=stroke_width, stroke_fill=stroke_fill)
-
-
-def image_to_base64(img: Image.Image, format='PNG') -> str:
-    output_buffer = BytesIO()
-    img.save(output_buffer, format)
-    byte_data = output_buffer.getvalue()
-    base64_str = base64.b64encode(byte_data).decode()
-    return 'data:image/png;base64,' + base64_str
 
 
 class LevelInfo(BaseModel):
@@ -110,6 +104,15 @@ class UserInfo(BaseModel):
     hot_rating_list: List[Rating]
 
 
+class Params(BaseModel):
+    show_break: Optional[bool]
+
+
+class RequestPayload(BaseModel):
+    data: UserInfo
+    params: Params
+
+
 with open(ONGEKI_DIR / 'data.json', 'r') as f:
     music_data = json.load(f)
     music_list: List = music_data["songs"]
@@ -152,12 +155,14 @@ class Draw:
     lunatic = Image.open(ONGEKI_DIR / 'pattern_lunatic.png')
     _diff = [basic, advanced, expert, master, None, None, None, None, None, None, lunatic]
 
-    def __init__(self, image: Image.Image = None) -> None:
+    def __init__(self, image: Image.Image = None, params: Params = Params()) -> None:
         self._im = image
         dr = ImageDraw.Draw(self._im)
         self._mr = DrawText(dr, FONT_MEIRYO)
         self._sy = DrawText(dr, FONT_SIYUAN)
         self._tb = DrawText(dr, FONT_TBFONT)
+        self.params = params
+
 
     async def whiledraw(self, data: List[Rating], height: int = 0) -> None:
         # y为第一排纵向坐标，dy为各排间距
@@ -208,13 +213,16 @@ class Draw:
                 title = changeColumnWidth(title, 21) + '...'
             self._sy.draw(x + 152, y + 20, 20, title, TEXT_COLOR[info.difficulty], anchor='lm')
             self._tb.draw(x + 152, y + 56, 38, f'{info.score}', TEXT_COLOR[info.difficulty], anchor='lm')
-            self._tb.draw(x + 342, y + 132, 22, f'{info.playlog.judge_break}-{info.playlog.judge_hit}-{info.playlog.judge_miss}', TEXT_COLOR[info.difficulty], anchor='mm')
+            if self.params.show_break:
+                self._tb.draw(x + 342, y + 132, 22, f'{info.playlog.judge_break}-{info.playlog.judge_hit}-{info.playlog.judge_miss}', TEXT_COLOR[info.difficulty], anchor='mm')
+            else:
+                self._tb.draw(x + 342, y + 132, 22, f'{info.playlog.judge_hit}-{info.playlog.judge_miss}', TEXT_COLOR[info.difficulty], anchor='mm')
             self._tb.draw(x + 152, y + 132, 22, f'{(info.rating - score2diff(info.score)) / 100:.01f} -> {info.rating / 100}', TEXT_COLOR[info.difficulty], anchor='lm')
 
 
 class DrawBest(Draw):
-    def __init__(self, data: UserInfo) -> None:
-        super().__init__(Image.open(ONGEKI_DIR / 'bg.png').convert('RGBA'))
+    def __init__(self, data: UserInfo, params: Params) -> None:
+        super().__init__(Image.open(ONGEKI_DIR / 'bg.png').convert('RGBA'), params)
         self.data = data
 
     def _getRatingIndex(self) -> int:
@@ -266,9 +274,9 @@ class DrawBest(Draw):
             pass
 
         self._im.alpha_composite(rating_header, (620, 280))
-        Rating = f'{self.data.rating:04d}'
-        Rating = Rating[0:2] + '.' + Rating[2:]
-        for n, i in enumerate(Rating):
+        rating_str = f'{self.data.rating:04d}'
+        rating_str = rating_str[0:2] + '.' + rating_str[2:]
+        for n, i in enumerate(rating_str):
             if n < 2:
                 self._im.alpha_composite(rating_numbers[int(i)].resize((68, 74)), (760 + 50 * n, 252))
             elif n == 2:
@@ -285,7 +293,7 @@ class DrawBest(Draw):
         self._mr.draw(682, 226, 56, self.data.level, (255, 255, 255, 200), 'lm')
         self._sy.draw(774, 217, 40, self.data.user_name, (0, 0, 0, 255), 'lm')
         self._tb.draw(847, 141, 28, f'B30: {self.data.best_rating / 100:.2f},  B15: {self.data.best_new_rating / 100:.2f}, R10: {self.data.hot_rating / 100:.2f}', (0, 0, 0, 255), 'mm', 3, (255, 255, 255, 255))
-        self._mr.draw(1100, 2465, 35, f'Designed by Yuri-YuzuChaN & BlueDeer233 & Hieuzest', (0, 50, 100, 255), 'mm', 3, (255, 255, 255, 255))
+        # self._mr.draw(1100, 2465, 35, f'Designed by Yuri-YuzuChaN & BlueDeer233 & Hieuzest', (0, 50, 100, 255), 'mm', 3, (255, 255, 255, 255))
 
         await self.whiledraw(self.data.best_rating_list, 370)
         await self.whiledraw(self.data.best_new_rating_list, 1430)
@@ -327,6 +335,15 @@ def changeColumnWidth(s: str, len: int) -> str:
     return ''.join(sList)
 
 
+def generate(data: UserInfo, params={}):
+    loop = asyncio.new_event_loop()
+    start = time.time()
+    draw = DrawBest(data, params)
+    img = loop.run_until_complete(draw.draw())
+    print('generated image for', data.user_name, ' cost ', time.time() - start, ' s')
+    return img
+
+
 if __name__ == '__main__':
     import fastapi
     import uvicorn
@@ -334,11 +351,10 @@ if __name__ == '__main__':
     app = fastapi.FastAPI()
 
     @app.post('/generate')
-    async def _generate(data: UserInfo):
-        draw = DrawBest(data)
-        img = await draw.draw()
-        return {
-            "url": image_to_base64(img)
-        }
+    async def _generate(data: RequestPayload):
+        img = await asyncio.to_thread(generate, data.data, data.params)
+        output_buffer = BytesIO()
+        img.save(output_buffer, 'PNG')
+        return fastapi.Response(output_buffer.getvalue(), media_type='image/png')
     
     uvicorn.run(app, host='127.0.0.1', port=5151)

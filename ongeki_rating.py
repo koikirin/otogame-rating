@@ -299,7 +299,7 @@ class DrawBest(Draw):
         await self.whiledraw(self.data.best_new_rating_list, 1430)
         await self.whiledraw(self.data.hot_rating_list, 1980)
 
-        return self._im.resize((1760, 2000))
+        return self._im.resize((1760, 2000)).convert('RGB')
 
 
 def getCharWidth(o) -> int:
@@ -354,7 +354,7 @@ if __name__ == '__main__':
     async def _generate(data: RequestPayload):
         img = await asyncio.to_thread(generate, data.data, data.params)
         output_buffer = BytesIO()
-        img.save(output_buffer, 'PNG')
+        img.save(output_buffer, 'JPEG', optimize=True)
         return fastapi.Response(output_buffer.getvalue(), media_type='image/png')
     
     uvicorn.run(app, host='127.0.0.1', port=5151)

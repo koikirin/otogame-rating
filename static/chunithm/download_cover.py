@@ -26,7 +26,7 @@ async def main():
             if os.path.exists(f'cover_ori/{img}'):
                 print('skip', img)
                 continue
-            url = f'https://dp4p6x0xfi5o9.cloudfront.net/ongeki/img/cover-m/{img}'
+            url = f'https://dp4p6x0xfi5o9.cloudfront.net/chunithm/img/cover-m/{img}'
             print(url)
             await download(url, f'cover_ori/{img}')
 

@@ -14,22 +14,36 @@ from pydantic import BaseModel
 
 ROOT: Path = Path(__file__).parent
 STATIC: Path = ROOT / 'static'
-RES_DIR: Path = STATIC / 'ongeki'
+RES_DIR: Path = STATIC / 'chunithm'
 
 FONT_MEIRYO: Path =  STATIC / 'meiryo.ttc'
 FONT_SIYUAN: Path = STATIC / 'SourceHanSansSC-Bold.otf'
 FONT_TBFONT: Path = STATIC / 'Torus SemiBold.otf'
 
-SCORE_RANKS: List[str] = ['d', 'c', 'b', 'bb', 'bbb', 'a', 'aa', 'aaa', 's', 'ss', 'sss', 'sssplus']
+SCORE_RANKS: List[str] = ['d', 'c', 'b', 'bb', 'bbb', 'a', 'aa', 'aaa', 's', 'splus', 'ss', 'ssplus', 'sss', 'sssplus']
 VERSION_NAME = {
-    'オンゲキ': 'ONGEKI',
-    'オンゲキ PLUS': 'ONGEKI+',
-    'SUMMER': 'SUMMER',
-    'SUMMER PLUS': 'SUMMER+',
-    'R.E.D.': 'R.E.D.',
-    'R.E.D. PLUS': 'R.E.D.+',
-    'bright': 'BRIGHT',
-    'bright MEMORY': 'BRIGHT+',
+    None: '',
+    '': '',
+    'CHUNITHM': 'CHUNI',
+    'CHUNITHM PLUS': 'CHUNI+',
+    'AIR': 'AIR',
+    'AIR PLUS': 'AIR+',
+    'STAR': 'STAR',
+    'STAR PLUS': 'STAR+',
+    'AMAZON': 'AMAZON',
+    'AMAZON PLUS': 'AMAZON+',
+    'CRYSTAL': 'CRYS',
+    'CRYSTAL PLUS': 'CRYS+',
+    'PARADISE': 'PARA',
+    'PARADISE LOST': 'PARA+',
+    'CHUNITHM NEW': 'NEW',
+    'CHUNITHM NEW PLUS': 'NEW+',
+    'SUN': 'SUN',
+    'SUN PLUS': 'SUN+',
+    'LUMINOUS': 'LUM',
+    'LUMINOUS PLUS': 'LUM+',
+    'VERSE': 'VERSE',
+    'VERSE PLUS': 'VERSE+',
 }
 
 
@@ -59,53 +73,49 @@ class DrawText:
             self._img.text((pos_x, pos_y), str(text), color, font, anchor, stroke_width=stroke_width, stroke_fill=stroke_fill)
 
 
-class LevelInfo(BaseModel):
-    difficulty: int
-    level: int
-
-
 class MusicInfo(BaseModel):
     music_id: str
     name: str
     artist: str
-    level_info: LevelInfo
 
 
 class Record(BaseModel):
+    difficulty: int
     is_full_combo: bool
-    is_full_bell: bool
-    is_all_break: bool
+    is_all_justice: bool
+    is_clear: bool
     judge_miss: int
-    judge_hit: int
-    judge_break: int
-    judge_critical_break: int
-    tech_score_rank: int
+    judge_attack: int
+    judge_justice: int
+    judge_critical: int
+    rank: int
+    music: MusicInfo
 
 
 class Rating(BaseModel):
-    difficulty: int
-    music: MusicInfo
     score: int
-    rating: int
+    rating: float
     playlog: Record
+
+    song_rating: float
+    image_name: str
+    version: Optional[str]
+
 
 
 class UserInfo(BaseModel):
     user_name: str
-    avatar: str
+    character: str
     level: int
-    battle_point: int
     rating: int
-    best_rating: int
-    best_new_rating: int
-    hot_rating: int
+    best_rating: float
+    best_new_rating: float
     best_rating_list: List[Rating]
     best_new_rating_list: List[Rating]
-    hot_rating_list: List[Rating]
 
 
 class Params(BaseModel):
-    show_break: Optional[bool]
+    show_justice: Optional[bool]
 
 
 class RequestPayload(BaseModel):
@@ -121,30 +131,17 @@ with open(RES_DIR / 'data.json', 'r') as f:
 async def getAvatar(avatar) -> Image.Image:
     async with aiohttp.ClientSession() as sess:
         try:
-            async with sess.get(f'https://oss.bemanicn.com/SDDT/icon/{avatar}.webp-thumbnail') as req:
+            async with sess.get(f'https://oss-hd1.bemanicn.com/chunithm/character/{avatar}.webp') as req:
                 return Image.open(BytesIO(await req.read()))
         except:
             return Image.open(RES_DIR / 'cover_fallback.webp')
             
 
-async def getCover(song: MusicInfo) -> Image.Image:
-    for s in music_list:
-        if s["title"] == song.name:
-            try:
-                return Image.open(RES_DIR / 'cover_ori' / s["imageName"]).convert('RGBA')
-            except Exception as e:
-                print('error', song, e)
-    else:
+async def getCover(song: Rating) -> Image.Image:
+    try:
+        return Image.open(RES_DIR / 'cover_ori' / song.image_name).convert('RGBA')
+    except Exception as e:
         return Image.open(RES_DIR / 'cover_fallback.webp')
-
-
-def score2diff(score) -> int:
-    if score >= 1007500:
-        return 200
-    elif score >= 1000000:
-        return 150 + (score - 1000000) / 150
-    else:
-        return 100 + (score - 990000) / 200
 
 
 class Draw:
@@ -152,8 +149,8 @@ class Draw:
     advanced = Image.open(RES_DIR / 'pattern_advanced.png')
     expert = Image.open(RES_DIR / 'pattern_expert.png')
     master = Image.open(RES_DIR / 'pattern_master.png')
-    lunatic = Image.open(RES_DIR / 'pattern_lunatic.png')
-    _diff = [basic, advanced, expert, master, None, None, None, None, None, None, lunatic]
+    ultima = Image.open(RES_DIR / 'pattern_ultima.png')
+    _diff = [basic, advanced, expert, master, ultima]
 
     def __init__(self, image: Image.Image = None, params: Params = Params()) -> None:
         self._im = image
@@ -168,7 +165,7 @@ class Draw:
         # y为第一排纵向坐标，dy为各排间距
         dy = 170
         y = height
-        TEXT_COLOR = [(255, 255, 255, 255), (255, 255, 255, 255), (255, 255, 255, 255), (255, 255, 255, 255), None, None, None, None, None, None, (205, 37, 36, 255)]
+        TEXT_COLOR = [(255, 255, 255, 255), (255, 255, 255, 255), (255, 255, 255, 255), (255, 255, 255, 255), (255, 255, 255, 255)]
         x = 70
         for num, info in enumerate(data):
             if num % 5 == 0:
@@ -177,74 +174,59 @@ class Draw:
             else:
                 x += 416
 
-            for s in music_list:
-                if s["title"] == info.music.name:
-                    song = s
-                    break
-            else:
-                raise ValueError('Not found')
+            cover = (await getCover(info)).resize((135, 135))
 
-            cover = (await getCover(info.music)).resize((135, 135))
-            rate = Image.open(RES_DIR / 'score' / f'score_{SCORE_RANKS[info.playlog.tech_score_rank - 1]}.png').resize((95, 44))
-            
-            self._im.alpha_composite(self._diff[info.difficulty], (x, y))
+            self._im.alpha_composite(self._diff[info.playlog.difficulty], (x, y))
             self._im.alpha_composite(cover, (x + 5, y + 5))
 
-            self._sy.draw(x + 8, y + 149, 18, f'#{num + 1}', TEXT_COLOR[info.difficulty], anchor='lm')
-            self._sy.draw(x + 136, y + 149, 18, f'{VERSION_NAME[song["version"]]}', TEXT_COLOR[info.difficulty], anchor='rm')
+            self._sy.draw(x + 8, y + 149, 18, f'#{num + 1}', TEXT_COLOR[info.playlog.difficulty], anchor='lm')
+            self._sy.draw(x + 136, y + 149, 18, f'{VERSION_NAME[info.version]}', TEXT_COLOR[info.playlog.difficulty], anchor='rm')
 
-            self._im.alpha_composite(rate, (x + 298, y + 36))
-
-            if info.playlog.is_all_break:
-                fc_img = 'score_detail_ab.png'
+            rate = Image.open(RES_DIR / 'score' / f'score_{SCORE_RANKS[info.playlog.rank - 1]}.png').resize((120, 34))
+            self._im.alpha_composite(rate, (x + 146, y + 82))
+            
+            if info.playlog.is_all_justice and info.playlog.judge_justice == 0:
+                fc_img = 'score_detail_ajc.png'
+            elif info.playlog.is_all_justice:
+                fc_img = 'score_detail_aj.png'
             elif info.playlog.is_full_combo:
                 fc_img = 'score_detail_fc.png'
+            elif info.playlog.is_clear:
+                fc_img = 'score_detail_clear.png'
             else:
-                fc_img = 'score_detail_fc_base.png'
-            fb_img = 'score_detail_fb.png' if info.playlog.is_full_bell else 'score_detail_fb_base.png'
+                fc_img = None
             
-            fc = Image.open(RES_DIR / 'score' / fc_img).resize((120, 36))
-            self._im.alpha_composite(fc, (x + 146, y + 82))
-            fb = Image.open(RES_DIR / 'score' / fb_img).resize((120, 36))
-            self._im.alpha_composite(fb, (x + 268, y + 82))
+            if fc_img:
+                fc = Image.open(RES_DIR / 'score' / fc_img).convert('RGBA').resize((120, 34))
+                self._im.alpha_composite(fc, (x + 270, y + 82))
 
-            title = info.music.name
+            title = info.playlog.music.name
             if coloumWidth(title) > 20:
                 title = changeColumnWidth(title, 19) + '...'
-            self._sy.draw(x + 152, y + 20, 20, title, TEXT_COLOR[info.difficulty], anchor='lm')
-            self._tb.draw(x + 152, y + 56, 38, f'{info.score}', TEXT_COLOR[info.difficulty], anchor='lm')
-            if self.params.show_break:
-                self._tb.draw(x + 342, y + 132, 22, f'{info.playlog.judge_break}-{info.playlog.judge_hit}-{info.playlog.judge_miss}', TEXT_COLOR[info.difficulty], anchor='mm')
+            self._sy.draw(x + 152, y + 20, 20, title, TEXT_COLOR[info.playlog.difficulty], anchor='lm')
+            self._tb.draw(x + 152, y + 56, 38, f'{info.score}', TEXT_COLOR[info.playlog.difficulty], anchor='lm')
+            if self.params.show_justice:
+                self._tb.draw(x + 342, y + 132, 22, f'{info.playlog.judge_justice}-{info.playlog.judge_attack}-{info.playlog.judge_miss}', TEXT_COLOR[info.playlog.difficulty], anchor='mm')
             else:
-                self._tb.draw(x + 342, y + 132, 22, f'{info.playlog.judge_hit}-{info.playlog.judge_miss}', TEXT_COLOR[info.difficulty], anchor='mm')
-            self._tb.draw(x + 152, y + 132, 22, f'{(info.rating - score2diff(info.score)) / 100:.01f} -> {info.rating / 100}', TEXT_COLOR[info.difficulty], anchor='lm')
+                self._tb.draw(x + 342, y + 132, 22, f'{info.playlog.judge_attack}-{info.playlog.judge_miss}', TEXT_COLOR[info.playlog.difficulty], anchor='mm')
+            self._tb.draw(x + 152, y + 132, 22, f'{info.song_rating:.01f} -> {info.rating:.02f}', TEXT_COLOR[info.playlog.difficulty], anchor='lm')
 
 
 class DrawBest(Draw):
     def __init__(self, data: UserInfo, params: Params) -> None:
-        super().__init__(Image.open(RES_DIR / 'bg.png').convert('RGBA'), params)
+        super().__init__(Image.open(RES_DIR / 'bg.png').convert('RGBA').resize((2200, 2500)), params)
         self.data = data
 
     def _getRatingIndex(self) -> int:
-        rating_ranges = [200, 400, 700, 1000, 1200, 1300, 1400, 1450, 1500, 2000]
+        rating_ranges = [0, 400, 700, 1000, 1200, 1325, 1450, 1450, 1525, 1600, 2000]
         for i, r in enumerate(rating_ranges):
             if self.data.rating < r:
                 return i
         else:
             return 10
 
-    def _getRankIndex(self) -> int:
-        rank_ranges = [200, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000, 13000, 14000, 15000, 17000, 19000, 20000, 999999]
-        rank_bgs = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 4, 5, 6, 7]
-        for i, r in enumerate(rank_ranges):
-            if self.data.battle_point < r:
-                return i, rank_bgs[i]
-        else:
-            return 0, 0
-
     async def draw(self) -> Image.Image:
         rating_index = self._getRatingIndex()
-        rank_index, rank_bg_index = self._getRankIndex()
 
         rating_number = Image.open(RES_DIR / 'rating' / f'num_{rating_index}.png')
         rating_numbers = []
@@ -252,22 +234,22 @@ class DrawBest(Draw):
             for i in range(4):
                 rating_numbers.append(rating_number.crop((34*i, 37*j, 34*(i+1), 37*(j+1))))
 
-        logo = Image.open(RES_DIR / 'logo.png').convert('RGBA').resize((410, 190))
+        logo = Image.open(RES_DIR / 'logo.png').convert('RGBA').resize((320, 240))
         rating_header = Image.open(RES_DIR / 'rating' / f'header_{rating_index}.png').resize((158, 42))
-        rank = Image.open(RES_DIR / 'rating' / f'rank_{rank_index}.png')
-        rank_bg = Image.open(RES_DIR / 'rating' / f'rank_bg_{rank_bg_index}.png').resize((130, 280))
         level = Image.open(RES_DIR / 'rating' / 'level_bg.png')
         name_bg = Image.open(RES_DIR / 'name_bg.png')
         rating_bg = Image.open(RES_DIR / 'extra_bg.png').resize((454, 50))
+        bg_chara = Image.open(RES_DIR / 'bg_chara.png')
 
-        self._im.alpha_composite(logo, (4, 112))
+        self._im.alpha_composite(logo, (40, 94))
+        self._im.alpha_composite(bg_chara, (1000, 2000))
 
         plate = Image.open(RES_DIR / 'plate.png').resize((1420, 230))
         self._im.alpha_composite(plate, (390, 100))
         icon = Image.open(RES_DIR / 'icon_bg.png').resize((214, 214))
         self._im.alpha_composite(icon, (398, 108))
         try:
-            avatar = await getAvatar(self.data.avatar)
+            avatar = await getAvatar(self.data.character)
             self._im.alpha_composite(Image.new('RGBA', (203, 203), (255, 255, 255, 255)), (404, 114))
             self._im.alpha_composite(avatar.convert('RGBA').resize((201, 201)), (405, 115))
         except Exception:
@@ -288,17 +270,14 @@ class DrawBest(Draw):
         self._im.alpha_composite(name_bg, (750, 185))
         self._im.alpha_composite(level, (620, 180))
         self._im.alpha_composite(rating_bg, (620, 120))
-        self._im.alpha_composite(rank_bg, (1800, 80))
-        self._im.alpha_composite(rank, (1826, 195))
 
         self._mr.draw(682, 226, 56, self.data.level, (255, 255, 255, 200), 'lm')
         self._sy.draw(774, 217, 40, self.data.user_name, (0, 0, 0, 255), 'lm')
-        self._tb.draw(847, 141, 28, f'B30: {self.data.best_rating / 100:.2f},  B15: {self.data.best_new_rating / 100:.2f}, R10: {self.data.hot_rating / 100:.2f}', (0, 0, 0, 255), 'mm', 3, (255, 255, 255, 255))
+        self._tb.draw(847, 141, 28, f'B30: {self.data.best_rating:.2f},  B20: {self.data.best_new_rating:.2f}', (0, 0, 0, 255), 'mm', 3, (255, 255, 255, 255))
         # self._mr.draw(1100, 2465, 35, f'Designed by Yuri-YuzuChaN & BlueDeer233 & Hieuzest', (0, 50, 100, 255), 'mm', 3, (255, 255, 255, 255))
 
-        await self.whiledraw(self.data.best_rating_list, 370)
-        await self.whiledraw(self.data.best_new_rating_list, 1430)
-        await self.whiledraw(self.data.hot_rating_list, 1980)
+        await self.whiledraw(self.data.best_rating_list, 400)
+        await self.whiledraw(self.data.best_new_rating_list, 1460)
 
         return self._im.resize((1760, 2000)).convert('RGB')
 
@@ -358,4 +337,4 @@ if __name__ == '__main__':
         img.save(output_buffer, 'JPEG', optimize=True)
         return fastapi.Response(output_buffer.getvalue(), media_type='image/png')
     
-    uvicorn.run(app, host='127.0.0.1', port=5151)
+    uvicorn.run(app, host='127.0.0.1', port=5152)

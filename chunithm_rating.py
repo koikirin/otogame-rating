@@ -182,7 +182,7 @@ class Draw:
             self._sy.draw(x + 8, y + 149, 18, f'#{num + 1}', TEXT_COLOR[info.playlog.difficulty], anchor='lm')
             self._sy.draw(x + 136, y + 149, 18, f'{VERSION_NAME[info.version]}', TEXT_COLOR[info.playlog.difficulty], anchor='rm')
 
-            rate = Image.open(RES_DIR / 'score' / f'score_{SCORE_RANKS[info.playlog.rank - 1]}.png').resize((120, 34))
+            rate = Image.open(RES_DIR / 'score' / f'score_{SCORE_RANKS[info.playlog.rank]}.png').resize((120, 34))
             self._im.alpha_composite(rate, (x + 146, y + 82))
             
             if info.playlog.is_all_justice and info.playlog.judge_justice == 0:

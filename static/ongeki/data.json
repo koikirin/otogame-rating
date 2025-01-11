@@ -70651,7 +70651,7 @@
 			"imageName": "a5c82c198cb1137a5e627afb00f7055e5c096ad5dca7648caa7c636fc7326f7f.png",
 			"version": "bright MEMORY",
 			"releaseDate": "2024-12-26",
-			"isNew": true,
+			"isNew": false,
 			"isLocked": null,
 			"comment": null,
 			"sheets": [
@@ -70718,7 +70718,7 @@
 			"imageName": "49d867e897828634d06f3fcf4eb761473346fe173125a1780d1bbeba7fbdae15.png",
 			"version": "bright MEMORY",
 			"releaseDate": "2024-12-26",
-			"isNew": true,
+			"isNew": false,
 			"isLocked": null,
 			"comment": null,
 			"sheets": [
@@ -70785,7 +70785,7 @@
 			"imageName": "55dbe92a9d5f86c74f2dbd3b05ef015d2151e87176a7e1fdaa9991c3b6ce7363.png",
 			"version": "bright MEMORY",
 			"releaseDate": "2024-12-26",
-			"isNew": true,
+			"isNew": false,
 			"isLocked": null,
 			"comment": null,
 			"sheets": [
@@ -70801,6 +70801,475 @@
 						"jp": true
 					},
 					"isSpecial": true
+				}
+			]
+		},
+		{
+			"songId": "アリアの最強しもべ計画♡",
+			"category": "POPS＆ANIME",
+			"title": "アリアの最強しもべ計画♡",
+			"artist": "月紫アリア",
+			"bpm": null,
+			"imageName": "f0be2261db68afbcbb461c9144ada8d42f3ffd9d2222b1316092b07f28f32995.png",
+			"version": "bright MEMORY",
+			"releaseDate": "2025-01-09",
+			"isNew": true,
+			"isLocked": null,
+			"comment": null,
+			"sheets": [
+				{
+					"type": "std",
+					"difficulty": "basic",
+					"level": "3",
+					"levelValue": 3,
+					"internalLevel": null,
+					"internalLevelValue": 3,
+					"noteDesigner": null,
+					"regions": {
+						"jp": true
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "advanced",
+					"level": "8",
+					"levelValue": 8,
+					"internalLevel": null,
+					"internalLevelValue": 8,
+					"noteDesigner": null,
+					"regions": {
+						"jp": true
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "expert",
+					"level": "12",
+					"levelValue": 12,
+					"internalLevel": null,
+					"internalLevelValue": 12,
+					"noteDesigner": null,
+					"regions": {
+						"jp": true
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "master",
+					"level": "14",
+					"levelValue": 14,
+					"internalLevel": null,
+					"internalLevelValue": 14,
+					"noteDesigner": null,
+					"regions": {
+						"jp": true
+					},
+					"isSpecial": false
+				}
+			]
+		},
+		{
+			"songId": "Re:StarT (2023ver.)",
+			"category": "POPS＆ANIME",
+			"title": "Re:StarT (2023ver.)",
+			"artist": "Re:AcT",
+			"bpm": null,
+			"imageName": "56e11c0c93a091fff594716b2fee131c811cdaaab71adb477158590960a3acdb.png",
+			"version": "bright MEMORY",
+			"releaseDate": "2025-01-09",
+			"isNew": true,
+			"isLocked": null,
+			"comment": null,
+			"sheets": [
+				{
+					"type": "std",
+					"difficulty": "basic",
+					"level": "2",
+					"levelValue": 2,
+					"internalLevel": null,
+					"internalLevelValue": 2,
+					"noteDesigner": null,
+					"regions": {
+						"jp": true
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "advanced",
+					"level": "6",
+					"levelValue": 6,
+					"internalLevel": null,
+					"internalLevelValue": 6,
+					"noteDesigner": null,
+					"regions": {
+						"jp": true
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "expert",
+					"level": "9+",
+					"levelValue": 9.7,
+					"internalLevel": null,
+					"internalLevelValue": 9.7,
+					"noteDesigner": null,
+					"regions": {
+						"jp": true
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "master",
+					"level": "12+",
+					"levelValue": 12.7,
+					"internalLevel": null,
+					"internalLevelValue": 12.7,
+					"noteDesigner": null,
+					"regions": {
+						"jp": true
+					},
+					"isSpecial": false
+				}
+			]
+		},
+		{
+			"songId": "Mornin’Bell",
+			"category": "POPS＆ANIME",
+			"title": "Mornin’Bell",
+			"artist": "稀羽すう",
+			"bpm": null,
+			"imageName": "8642b1e1e901ffa475b9e66ef2ede20f919f353da0d983fbdec853c5e98ac149.png",
+			"version": "bright MEMORY",
+			"releaseDate": "2025-01-09",
+			"isNew": true,
+			"isLocked": null,
+			"comment": null,
+			"sheets": [
+				{
+					"type": "std",
+					"difficulty": "basic",
+					"level": "1",
+					"levelValue": 1,
+					"internalLevel": null,
+					"internalLevelValue": 1,
+					"noteDesigner": null,
+					"regions": {
+						"jp": true
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "advanced",
+					"level": "6",
+					"levelValue": 6,
+					"internalLevel": null,
+					"internalLevelValue": 6,
+					"noteDesigner": null,
+					"regions": {
+						"jp": true
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "expert",
+					"level": "9+",
+					"levelValue": 9.7,
+					"internalLevel": null,
+					"internalLevelValue": 9.7,
+					"noteDesigner": null,
+					"regions": {
+						"jp": true
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "master",
+					"level": "13",
+					"levelValue": 13,
+					"internalLevel": null,
+					"internalLevelValue": 13,
+					"noteDesigner": null,
+					"regions": {
+						"jp": true
+					},
+					"isSpecial": false
+				}
+			]
+		},
+		{
+			"songId": "群青シグナル",
+			"category": "チュウマイ",
+			"title": "群青シグナル",
+			"artist": "テヅカ feat. 獅子神レオナ",
+			"bpm": null,
+			"imageName": "e5ceb1b4bf7f0c2afd16551d58e1d214724f91fef2eefb49ba29e4e3b4e7d4c2.png",
+			"version": "bright MEMORY",
+			"releaseDate": "2025-01-09",
+			"isNew": true,
+			"isLocked": null,
+			"comment": null,
+			"sheets": [
+				{
+					"type": "std",
+					"difficulty": "basic",
+					"level": "4",
+					"levelValue": 4,
+					"internalLevel": null,
+					"internalLevelValue": 4,
+					"noteDesigner": null,
+					"regions": {
+						"jp": true
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "advanced",
+					"level": "8",
+					"levelValue": 8,
+					"internalLevel": null,
+					"internalLevelValue": 8,
+					"noteDesigner": null,
+					"regions": {
+						"jp": true
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "expert",
+					"level": "11",
+					"levelValue": 11,
+					"internalLevel": null,
+					"internalLevelValue": 11,
+					"noteDesigner": null,
+					"regions": {
+						"jp": true
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "master",
+					"level": "14",
+					"levelValue": 14,
+					"internalLevel": null,
+					"internalLevelValue": 14,
+					"noteDesigner": null,
+					"regions": {
+						"jp": true
+					},
+					"isSpecial": false
+				}
+			]
+		},
+		{
+			"songId": "MAKING！ハイタッチ！ -星咲 あかりソロver.-",
+			"category": "ボーナストラック",
+			"title": "MAKING！ハイタッチ！ -星咲 あかりソロver.-",
+			"artist": "曲：山本恭平（Arte Refact）／歌：星咲 あかり(CV：赤尾 ひかる)",
+			"bpm": null,
+			"imageName": "d434dda9300502c53a0c5bd071c2d9b93a44f73cd574fc8d288e222c4203aee4.png",
+			"version": "bright MEMORY",
+			"releaseDate": "2025-01-09",
+			"isNew": true,
+			"isLocked": null,
+			"comment": null,
+			"sheets": [
+				{
+					"type": "std",
+					"difficulty": "basic",
+					"level": "2",
+					"levelValue": 2,
+					"internalLevel": null,
+					"internalLevelValue": 2,
+					"noteDesigner": null,
+					"regions": {
+						"jp": true
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "advanced",
+					"level": "7",
+					"levelValue": 7,
+					"internalLevel": null,
+					"internalLevelValue": 7,
+					"noteDesigner": null,
+					"regions": {
+						"jp": true
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "expert",
+					"level": "9",
+					"levelValue": 9,
+					"internalLevel": null,
+					"internalLevelValue": 9,
+					"noteDesigner": null,
+					"regions": {
+						"jp": true
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "master",
+					"level": "13",
+					"levelValue": 13,
+					"internalLevel": null,
+					"internalLevelValue": 13,
+					"noteDesigner": null,
+					"regions": {
+						"jp": true
+					},
+					"isSpecial": false
+				}
+			]
+		},
+		{
+			"songId": "MAKING！ハイタッチ！ -桜井 春菜ソロver.-",
+			"category": "ボーナストラック",
+			"title": "MAKING！ハイタッチ！ -桜井 春菜ソロver.-",
+			"artist": "曲：山本恭平（Arte Refact）／歌：桜井 春菜(CV：近藤 玲奈)",
+			"bpm": null,
+			"imageName": "c77241a37d06a3cdacf8aa6281fde828ed3ffc7b69a6213a62ecf7fc0b6630ff.png",
+			"version": "bright MEMORY",
+			"releaseDate": "2025-01-09",
+			"isNew": true,
+			"isLocked": null,
+			"comment": null,
+			"sheets": [
+				{
+					"type": "std",
+					"difficulty": "basic",
+					"level": "2",
+					"levelValue": 2,
+					"internalLevel": null,
+					"internalLevelValue": 2,
+					"noteDesigner": null,
+					"regions": {
+						"jp": true
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "advanced",
+					"level": "7",
+					"levelValue": 7,
+					"internalLevel": null,
+					"internalLevelValue": 7,
+					"noteDesigner": null,
+					"regions": {
+						"jp": true
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "expert",
+					"level": "9",
+					"levelValue": 9,
+					"internalLevel": null,
+					"internalLevelValue": 9,
+					"noteDesigner": null,
+					"regions": {
+						"jp": true
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "master",
+					"level": "13",
+					"levelValue": 13,
+					"internalLevel": null,
+					"internalLevelValue": 13,
+					"noteDesigner": null,
+					"regions": {
+						"jp": true
+					},
+					"isSpecial": false
+				}
+			]
+		},
+		{
+			"songId": "MAKING！ハイタッチ！ -逢坂 茜ソロver.-",
+			"category": "ボーナストラック",
+			"title": "MAKING！ハイタッチ！ -逢坂 茜ソロver.-",
+			"artist": "曲：山本恭平（Arte Refact）／歌：逢坂 茜(CV：大空 直美)",
+			"bpm": null,
+			"imageName": "4c79499f04b822f3bfb6d1506bdf381b5d2ee64275c1d5868391dfb0b4c14d9b.png",
+			"version": "bright MEMORY",
+			"releaseDate": "2025-01-09",
+			"isNew": true,
+			"isLocked": null,
+			"comment": null,
+			"sheets": [
+				{
+					"type": "std",
+					"difficulty": "basic",
+					"level": "2",
+					"levelValue": 2,
+					"internalLevel": null,
+					"internalLevelValue": 2,
+					"noteDesigner": null,
+					"regions": {
+						"jp": true
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "advanced",
+					"level": "7",
+					"levelValue": 7,
+					"internalLevel": null,
+					"internalLevelValue": 7,
+					"noteDesigner": null,
+					"regions": {
+						"jp": true
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "expert",
+					"level": "9",
+					"levelValue": 9,
+					"internalLevel": null,
+					"internalLevelValue": 9,
+					"noteDesigner": null,
+					"regions": {
+						"jp": true
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "master",
+					"level": "13",
+					"levelValue": 13,
+					"internalLevel": null,
+					"internalLevelValue": 13,
+					"noteDesigner": null,
+					"regions": {
+						"jp": true
+					},
+					"isSpecial": false
 				}
 			]
 		}
@@ -70910,5 +71379,5 @@
 			"name": "日本版"
 		}
 	],
-	"updateTime": "2025-01-03T15:52:01.265Z"
+	"updateTime": "2025-01-10T01:07:30.164Z"
 }

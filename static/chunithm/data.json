@@ -34187,6 +34187,28 @@
 						"intl": true
 					},
 					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "ultima",
+					"level": "14+",
+					"levelValue": 14.5,
+					"internalLevel": null,
+					"internalLevelValue": 14.5,
+					"noteDesigner": "Redarrow",
+					"noteCounts": {
+						"tap": 1300,
+						"hold": 120,
+						"slide": 367,
+						"air": 338,
+						"flick": 104,
+						"total": 2229
+					},
+					"regions": {
+						"jp": true,
+						"intl": false
+					},
+					"isSpecial": false
 				}
 			]
 		},
@@ -157400,7 +157422,7 @@
 					},
 					"regions": {
 						"jp": true,
-						"intl": false
+						"intl": true
 					},
 					"isSpecial": false
 				},
@@ -157422,7 +157444,7 @@
 					},
 					"regions": {
 						"jp": true,
-						"intl": false
+						"intl": true
 					},
 					"isSpecial": false
 				},
@@ -157444,7 +157466,7 @@
 					},
 					"regions": {
 						"jp": true,
-						"intl": false
+						"intl": true
 					},
 					"isSpecial": false
 				},
@@ -157466,7 +157488,7 @@
 					},
 					"regions": {
 						"jp": true,
-						"intl": false
+						"intl": true
 					},
 					"isSpecial": false
 				}
@@ -157503,7 +157525,7 @@
 					},
 					"regions": {
 						"jp": true,
-						"intl": false
+						"intl": true
 					},
 					"isSpecial": false
 				},
@@ -157525,7 +157547,7 @@
 					},
 					"regions": {
 						"jp": true,
-						"intl": false
+						"intl": true
 					},
 					"isSpecial": false
 				},
@@ -157547,7 +157569,7 @@
 					},
 					"regions": {
 						"jp": true,
-						"intl": false
+						"intl": true
 					},
 					"isSpecial": false
 				},
@@ -157569,7 +157591,7 @@
 					},
 					"regions": {
 						"jp": true,
-						"intl": false
+						"intl": true
 					},
 					"isSpecial": false
 				},
@@ -157591,7 +157613,7 @@
 					},
 					"regions": {
 						"jp": true,
-						"intl": false
+						"intl": true
 					},
 					"isSpecial": false
 				}
@@ -157628,7 +157650,7 @@
 					},
 					"regions": {
 						"jp": true,
-						"intl": false
+						"intl": true
 					},
 					"isSpecial": false
 				},
@@ -157650,7 +157672,7 @@
 					},
 					"regions": {
 						"jp": true,
-						"intl": false
+						"intl": true
 					},
 					"isSpecial": false
 				},
@@ -157672,7 +157694,7 @@
 					},
 					"regions": {
 						"jp": true,
-						"intl": false
+						"intl": true
 					},
 					"isSpecial": false
 				},
@@ -157694,7 +157716,7 @@
 					},
 					"regions": {
 						"jp": true,
-						"intl": false
+						"intl": true
 					},
 					"isSpecial": false
 				}
@@ -162801,7 +162823,7 @@
 			"imageName": "b5a252e7b528c1ef8d50a09ff451105a606456e177536f8988a7e387ab36e161.png",
 			"version": "VERSE",
 			"releaseDate": "2024-12-19",
-			"isNew": true,
+			"isNew": false,
 			"isLocked": null,
 			"comment": null,
 			"sheets": [
@@ -162904,7 +162926,7 @@
 			"imageName": "d8de57fbe51e7e20483c9e3327d338943b5b51cf39ff9c3cfa79b22782fe232f.png",
 			"version": "VERSE",
 			"releaseDate": "2024-12-19",
-			"isNew": true,
+			"isNew": false,
 			"isLocked": null,
 			"comment": null,
 			"sheets": [
@@ -163007,7 +163029,7 @@
 			"imageName": "ec4c68df51be362ccbcf55bc764f2a6c5e57e613a3c371ff153dd7c5af3a8c45.png",
 			"version": "VERSE",
 			"releaseDate": "2024-12-19",
-			"isNew": true,
+			"isNew": false,
 			"isLocked": null,
 			"comment": null,
 			"sheets": [
@@ -163110,7 +163132,7 @@
 			"imageName": "a4f8925bbdfb211b97f0775841b09dfd5074dd2a273c37dfb76be7841d948119.png",
 			"version": "VERSE",
 			"releaseDate": "2024-12-19",
-			"isNew": true,
+			"isNew": false,
 			"isLocked": null,
 			"comment": null,
 			"sheets": [
@@ -163195,6 +163217,521 @@
 						"air": 514,
 						"flick": 148,
 						"total": 2540
+					},
+					"regions": {
+						"jp": true,
+						"intl": false
+					},
+					"isSpecial": false
+				}
+			]
+		},
+		{
+			"songId": "激烈!!!!ファミレスガールは帰しま1000!!!!",
+			"category": "ORIGINAL",
+			"title": "激烈!!!!ファミレスガールは帰しま1000!!!!",
+			"artist": "南ノ南 feat.9Lana",
+			"bpm": null,
+			"imageName": "04e70c526a41b6f80c1ac84a767519c88644b46f8b6ec5c50993d40b79cf3790.png",
+			"version": "VERSE",
+			"releaseDate": "2025-01-09",
+			"isNew": true,
+			"isLocked": null,
+			"comment": null,
+			"sheets": [
+				{
+					"type": "std",
+					"difficulty": "basic",
+					"level": "3",
+					"levelValue": 3,
+					"internalLevel": "3.0",
+					"internalLevelValue": 3,
+					"noteDesigner": "-",
+					"noteCounts": {
+						"tap": 282,
+						"hold": 90,
+						"slide": 64,
+						"air": 64,
+						"flick": null,
+						"total": 500
+					},
+					"regions": {
+						"jp": true,
+						"intl": false
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "advanced",
+					"level": "7",
+					"levelValue": 7,
+					"internalLevel": "7.0",
+					"internalLevelValue": 7,
+					"noteDesigner": "-",
+					"noteCounts": {
+						"tap": 435,
+						"hold": 264,
+						"slide": 245,
+						"air": 56,
+						"flick": null,
+						"total": 1000
+					},
+					"regions": {
+						"jp": true,
+						"intl": false
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "expert",
+					"level": "13",
+					"levelValue": 13,
+					"internalLevel": null,
+					"internalLevelValue": 13,
+					"noteDesigner": null,
+					"noteCounts": {
+						"tap": null,
+						"hold": null,
+						"slide": null,
+						"air": null,
+						"flick": null,
+						"total": null
+					},
+					"regions": {
+						"jp": true,
+						"intl": false
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "master",
+					"level": "14",
+					"levelValue": 14,
+					"internalLevel": null,
+					"internalLevelValue": 14,
+					"noteDesigner": null,
+					"noteCounts": {
+						"tap": null,
+						"hold": null,
+						"slide": null,
+						"air": null,
+						"flick": null,
+						"total": 3000
+					},
+					"regions": {
+						"jp": true,
+						"intl": false
+					},
+					"isSpecial": false
+				}
+			]
+		},
+		{
+			"songId": "あいのうた",
+			"category": "niconico",
+			"title": "あいのうた",
+			"artist": "大漠波新",
+			"bpm": null,
+			"imageName": "8b33c0316db32e3c684ba75b4ccbdd1878a3e2f582705adb4b97978c374aba04.png",
+			"version": "VERSE",
+			"releaseDate": "2025-01-09",
+			"isNew": true,
+			"isLocked": null,
+			"comment": null,
+			"sheets": [
+				{
+					"type": "std",
+					"difficulty": "basic",
+					"level": "2",
+					"levelValue": 2,
+					"internalLevel": "2.0",
+					"internalLevelValue": 2,
+					"noteDesigner": "-",
+					"noteCounts": {
+						"tap": 195,
+						"hold": 65,
+						"slide": 124,
+						"air": 57,
+						"flick": null,
+						"total": 441
+					},
+					"regions": {
+						"jp": true,
+						"intl": false
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "advanced",
+					"level": "6",
+					"levelValue": 6,
+					"internalLevel": "6.0",
+					"internalLevelValue": 6,
+					"noteDesigner": "-",
+					"noteCounts": {
+						"tap": 283,
+						"hold": 128,
+						"slide": 301,
+						"air": 82,
+						"flick": null,
+						"total": 794
+					},
+					"regions": {
+						"jp": true,
+						"intl": false
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "expert",
+					"level": "10",
+					"levelValue": 10,
+					"internalLevel": null,
+					"internalLevelValue": 10,
+					"noteDesigner": "ミニミライト",
+					"noteCounts": {
+						"tap": null,
+						"hold": null,
+						"slide": null,
+						"air": null,
+						"flick": null,
+						"total": 1193
+					},
+					"regions": {
+						"jp": true,
+						"intl": false
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "master",
+					"level": "13+",
+					"levelValue": 13.5,
+					"internalLevel": null,
+					"internalLevelValue": 13.5,
+					"noteDesigner": "ミストルティン",
+					"noteCounts": {
+						"tap": null,
+						"hold": null,
+						"slide": null,
+						"air": null,
+						"flick": null,
+						"total": 1947
+					},
+					"regions": {
+						"jp": true,
+						"intl": false
+					},
+					"isSpecial": false
+				}
+			]
+		},
+		{
+			"songId": "夜もすがら君想ふ (10th Anniv.)",
+			"category": "niconico",
+			"title": "夜もすがら君想ふ (10th Anniv.)",
+			"artist": "TOKOTOKO（西沢さんP）",
+			"bpm": null,
+			"imageName": "c691d81955ce78d0ac8714fa43499e2faad2aa4e1ff8380106b124df2cadeefd.png",
+			"version": "VERSE",
+			"releaseDate": "2025-01-09",
+			"isNew": true,
+			"isLocked": null,
+			"comment": null,
+			"sheets": [
+				{
+					"type": "std",
+					"difficulty": "basic",
+					"level": "2",
+					"levelValue": 2,
+					"internalLevel": "2.0",
+					"internalLevelValue": 2,
+					"noteDesigner": "-",
+					"noteCounts": {
+						"tap": null,
+						"hold": null,
+						"slide": null,
+						"air": null,
+						"flick": null,
+						"total": 439
+					},
+					"regions": {
+						"jp": true,
+						"intl": false
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "advanced",
+					"level": "5",
+					"levelValue": 5,
+					"internalLevel": "5.0",
+					"internalLevelValue": 5,
+					"noteDesigner": "-",
+					"noteCounts": {
+						"tap": 316,
+						"hold": 97,
+						"slide": 135,
+						"air": 66,
+						"flick": null,
+						"total": 614
+					},
+					"regions": {
+						"jp": true,
+						"intl": false
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "expert",
+					"level": "9",
+					"levelValue": 9,
+					"internalLevel": "9.0",
+					"internalLevelValue": 9,
+					"noteDesigner": "ロシェ＠ペンギン",
+					"noteCounts": {
+						"tap": 780,
+						"hold": 170,
+						"slide": 119,
+						"air": 122,
+						"flick": null,
+						"total": 1191
+					},
+					"regions": {
+						"jp": true,
+						"intl": false
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "master",
+					"level": "13",
+					"levelValue": 13,
+					"internalLevel": null,
+					"internalLevelValue": 13,
+					"noteDesigner": "じゃこレモン",
+					"noteCounts": {
+						"tap": 896,
+						"hold": 122,
+						"slide": 185,
+						"air": 404,
+						"flick": 123,
+						"total": 1730
+					},
+					"regions": {
+						"jp": true,
+						"intl": false
+					},
+					"isSpecial": false
+				}
+			]
+		},
+		{
+			"songId": "ジェヘナ",
+			"category": "niconico",
+			"title": "ジェヘナ",
+			"artist": "wotaku",
+			"bpm": null,
+			"imageName": "db2e7d33013c04963d72a109f42e8897f5e57a4c128df1f501787bb4b0f80063.png",
+			"version": "VERSE",
+			"releaseDate": "2025-01-09",
+			"isNew": true,
+			"isLocked": null,
+			"comment": null,
+			"sheets": [
+				{
+					"type": "std",
+					"difficulty": "basic",
+					"level": "2",
+					"levelValue": 2,
+					"internalLevel": "2.0",
+					"internalLevelValue": 2,
+					"noteDesigner": "-",
+					"noteCounts": {
+						"tap": 172,
+						"hold": 67,
+						"slide": 96,
+						"air": 65,
+						"flick": null,
+						"total": 400
+					},
+					"regions": {
+						"jp": true,
+						"intl": false
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "advanced",
+					"level": "5",
+					"levelValue": 5,
+					"internalLevel": "5.0",
+					"internalLevelValue": 5,
+					"noteDesigner": "-",
+					"noteCounts": {
+						"tap": 269,
+						"hold": 132,
+						"slide": 140,
+						"air": 34,
+						"flick": null,
+						"total": 575
+					},
+					"regions": {
+						"jp": true,
+						"intl": false
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "expert",
+					"level": "10",
+					"levelValue": 10,
+					"internalLevel": null,
+					"internalLevelValue": 10,
+					"noteDesigner": "アミノハバキリ",
+					"noteCounts": {
+						"tap": 514,
+						"hold": 126,
+						"slide": 227,
+						"air": 95,
+						"flick": null,
+						"total": 962
+					},
+					"regions": {
+						"jp": true,
+						"intl": false
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "master",
+					"level": "14",
+					"levelValue": 14,
+					"internalLevel": null,
+					"internalLevelValue": 14,
+					"noteDesigner": "みぞれヤナギ(笑)(笑)(笑)(笑)(笑)",
+					"noteCounts": {
+						"tap": null,
+						"hold": null,
+						"slide": null,
+						"air": null,
+						"flick": null,
+						"total": 1629
+					},
+					"regions": {
+						"jp": true,
+						"intl": false
+					},
+					"isSpecial": false
+				}
+			]
+		},
+		{
+			"songId": "Not On The Sidelines - Street Fighter 6 Main Theme",
+			"category": "VARIETY",
+			"title": "Not On The Sidelines - Street Fighter 6 Main Theme",
+			"artist": "Rocco808,Randy Marx,GRP,寺山善也「ストリートファイター6」",
+			"bpm": null,
+			"imageName": "faafd55d18d674238132487a02c4011dc386fb45b824719612c27a346f5013fe.png",
+			"version": "VERSE",
+			"releaseDate": "2025-01-09",
+			"isNew": true,
+			"isLocked": null,
+			"comment": null,
+			"sheets": [
+				{
+					"type": "std",
+					"difficulty": "basic",
+					"level": "3",
+					"levelValue": 3,
+					"internalLevel": "3.0",
+					"internalLevelValue": 3,
+					"noteDesigner": "-",
+					"noteCounts": {
+						"tap": null,
+						"hold": null,
+						"slide": null,
+						"air": null,
+						"flick": null,
+						"total": 504
+					},
+					"regions": {
+						"jp": true,
+						"intl": false
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "advanced",
+					"level": "5",
+					"levelValue": 5,
+					"internalLevel": "5.0",
+					"internalLevelValue": 5,
+					"noteDesigner": "-",
+					"noteCounts": {
+						"tap": 320,
+						"hold": 156,
+						"slide": 166,
+						"air": 80,
+						"flick": null,
+						"total": 722
+					},
+					"regions": {
+						"jp": true,
+						"intl": false
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "expert",
+					"level": "10",
+					"levelValue": 10,
+					"internalLevel": null,
+					"internalLevelValue": 10,
+					"noteDesigner": "アミノハバキリ",
+					"noteCounts": {
+						"tap": 532,
+						"hold": 153,
+						"slide": 277,
+						"air": 112,
+						"flick": null,
+						"total": 1074
+					},
+					"regions": {
+						"jp": true,
+						"intl": false
+					},
+					"isSpecial": false
+				},
+				{
+					"type": "std",
+					"difficulty": "master",
+					"level": "13",
+					"levelValue": 13,
+					"internalLevel": null,
+					"internalLevelValue": 13,
+					"noteDesigner": "ミストルティン VS 夕凪アロエ",
+					"noteCounts": {
+						"tap": null,
+						"hold": null,
+						"slide": null,
+						"air": null,
+						"flick": null,
+						"total": 2053
 					},
 					"regions": {
 						"jp": true,
@@ -163355,5 +163892,5 @@
 			"name": "海外版 (International ver.)"
 		}
 	],
-	"updateTime": "2025-01-08T12:56:50.513Z"
+	"updateTime": "2025-01-10T01:10:35.191Z"
 }

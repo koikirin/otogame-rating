@@ -123,10 +123,15 @@ class RequestPayload(BaseModel):
     params: Params
 
 
-with open(RES_DIR / 'data.json', 'r') as f:
-    music_data = json.load(f)
-    music_list: List = music_data["songs"]
+music_list: List
 
+def loadData():
+    global music_list
+    with open(RES_DIR / 'data.json', 'r') as f:
+        music_data = json.load(f)
+        music_list = music_data["songs"]
+
+loadData()
 
 async def getAvatar(avatar) -> Image.Image:
     async with aiohttp.ClientSession() as sess:
@@ -335,6 +340,6 @@ if __name__ == '__main__':
         img = await asyncio.to_thread(generate, data.data, data.params)
         output_buffer = BytesIO()
         img.save(output_buffer, 'JPEG', optimize=True)
-        return fastapi.Response(output_buffer.getvalue(), media_type='image/png')
+        return fastapi.Response(output_buffer.getvalue(), media_type='image/jpeg')
     
     uvicorn.run(app, host='127.0.0.1', port=5152)

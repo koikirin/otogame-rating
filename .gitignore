@@ -1,3 +1,7 @@
+**/__pycache__/
+
 static/PROXY
+static/ongeki/data.json
 static/ongeki/cover_ori/
+static/chunithm/data.json
 static/chunithm/cover_ori/

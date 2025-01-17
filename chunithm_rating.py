@@ -190,7 +190,7 @@ class Draw:
             rate = Image.open(RES_DIR / 'score' / f'score_{SCORE_RANKS[info.playlog.rank]}.png').resize((120, 34))
             self._im.alpha_composite(rate, (x + 146, y + 82))
             
-            if info.playlog.is_all_justice and info.playlog.judge_justice == 0:
+            if info.score == 1010000:
                 fc_img = 'score_detail_ajc.png'
             elif info.playlog.is_all_justice:
                 fc_img = 'score_detail_aj.png'

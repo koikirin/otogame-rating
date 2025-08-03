@@ -131,7 +131,7 @@ async def getAvatar(avatar) -> Image.Image:
 
 async def getCover(song: MusicInfo) -> Image.Image:
     for s in music_list:
-        if s["title"] == song.name:
+        if s["title"] == song.name and s["artist"] == song.artist:
             try:
                 return Image.open(RES_DIR / 'cover_ori' / s["imageName"]).convert('RGBA')
             except Exception as e:
@@ -180,11 +180,11 @@ class Draw:
                 x += 416
 
             for s in music_list:
-                if s["title"] == info.music.name:
+                if s["title"] == info.music.name and s["artist"] == info.music.artist:
                     song = s
                     break
             else:
-                raise ValueError('Not found')
+                song = None
 
             cover = (await getCover(info.music)).resize((135, 135))
             rate = Image.open(RES_DIR / 'score' / f'score_{SCORE_RANKS[info.playlog.tech_score_rank - 1]}.png').resize((95, 44))
@@ -193,7 +193,7 @@ class Draw:
             self._im.alpha_composite(cover, (x + 5, y + 5))
 
             self._sy.draw(x + 8, y + 149, 18, f'#{num + 1}', TEXT_COLOR[info.difficulty], anchor='lm')
-            self._sy.draw(x + 136, y + 149, 18, f'{VERSION_NAME[song["version"]]}', TEXT_COLOR[info.difficulty], anchor='rm')
+            self._sy.draw(x + 136, y + 149, 18, f'{VERSION_NAME[song["version"]] if song else "?"}', TEXT_COLOR[info.difficulty], anchor='rm')
 
             self._im.alpha_composite(rate, (x + 298, y + 36))
 

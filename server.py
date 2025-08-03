@@ -115,5 +115,5 @@ async def _generate(data: Chunithm.RequestPayload):
     img.save(output_buffer, 'JPEG', optimize=True)
     return fastapi.Response(output_buffer.getvalue(), media_type='image/jpeg')
 
-
+# main
 uvicorn.run(app, host='127.0.0.1', port=5150)

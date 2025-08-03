@@ -30,6 +30,7 @@ VERSION_NAME = {
     'R.E.D. PLUS': 'R.E.D.+',
     'bright': 'BRIGHT',
     'bright MEMORY': 'BRIGHT+',
+    'Re:Fresh': 'REFRESH',
 }
 
 
@@ -59,16 +60,10 @@ class DrawText:
             self._img.text((pos_x, pos_y), str(text), color, font, anchor, stroke_width=stroke_width, stroke_fill=stroke_fill)
 
 
-class LevelInfo(BaseModel):
-    difficulty: int
-    level: int
-
-
 class MusicInfo(BaseModel):
     music_id: str
     name: str
     artist: str
-    level_info: LevelInfo
 
 
 class Record(BaseModel):
@@ -86,8 +81,9 @@ class Rating(BaseModel):
     difficulty: int
     music: MusicInfo
     score: int
-    rating: int
+    rating: float
     playlog: Record
+    song_rating: float
 
 
 class UserInfo(BaseModel):
@@ -96,12 +92,13 @@ class UserInfo(BaseModel):
     level: int
     battle_point: int
     rating: int
-    best_rating: int
-    best_new_rating: int
-    hot_rating: int
+    calc_rating: float
+    best_rating: float
+    best_new_rating: float
+    # hot_rating: int
     best_rating_list: List[Rating]
     best_new_rating_list: List[Rating]
-    hot_rating_list: List[Rating]
+    # hot_rating_list: List[Rating]
 
 
 class Params(BaseModel):
@@ -171,7 +168,7 @@ class Draw:
 
     async def whiledraw(self, data: List[Rating], height: int = 0) -> None:
         # y为第一排纵向坐标，dy为各排间距
-        dy = 170
+        dy = 175
         y = height
         TEXT_COLOR = [(255, 255, 255, 255), (255, 255, 255, 255), (255, 255, 255, 255), (255, 255, 255, 255), None, None, None, None, None, None, (205, 37, 36, 255)]
         x = 70
@@ -222,7 +219,7 @@ class Draw:
                 self._tb.draw(x + 342, y + 132, 22, f'{info.playlog.judge_break}-{info.playlog.judge_hit}-{info.playlog.judge_miss}', TEXT_COLOR[info.difficulty], anchor='mm')
             else:
                 self._tb.draw(x + 342, y + 132, 22, f'{info.playlog.judge_hit}-{info.playlog.judge_miss}', TEXT_COLOR[info.difficulty], anchor='mm')
-            self._tb.draw(x + 152, y + 132, 22, f'{(info.rating - score2diff(info.score)) / 100:.01f} -> {info.rating / 100}', TEXT_COLOR[info.difficulty], anchor='lm')
+            self._tb.draw(x + 152, y + 132, 22, f'{info.song_rating:.01f} -> {info.rating:.02f}', TEXT_COLOR[info.difficulty], anchor='lm')
 
 
 class DrawBest(Draw):
@@ -231,7 +228,7 @@ class DrawBest(Draw):
         self.data = data
 
     def _getRatingIndex(self) -> int:
-        rating_ranges = [200, 400, 700, 1000, 1200, 1300, 1400, 1450, 1500, 2000]
+        rating_ranges = [4000, 7000, 9000, 11000, 13000, 15000, 17000, 18000, 19000, 2000]
         for i, r in enumerate(rating_ranges):
             if self.data.rating < r:
                 return i
@@ -257,7 +254,7 @@ class DrawBest(Draw):
             for i in range(4):
                 rating_numbers.append(rating_number.crop((34*i, 37*j, 34*(i+1), 37*(j+1))))
 
-        logo = Image.open(RES_DIR / 'logo.png').convert('RGBA').resize((410, 190))
+        logo = Image.open(RES_DIR / 'logo.png').convert('RGBA').resize((380, 210))
         rating_header = Image.open(RES_DIR / 'rating' / f'header_{rating_index}.png').resize((158, 42))
         rank = Image.open(RES_DIR / 'rating' / f'rank_{rank_index}.png')
         rank_bg = Image.open(RES_DIR / 'rating' / f'rank_bg_{rank_bg_index}.png').resize((130, 280))
@@ -265,7 +262,7 @@ class DrawBest(Draw):
         name_bg = Image.open(RES_DIR / 'name_bg.png')
         rating_bg = Image.open(RES_DIR / 'extra_bg.png').resize((454, 50))
 
-        self._im.alpha_composite(logo, (4, 112))
+        self._im.alpha_composite(logo, (16, 112))
 
         plate = Image.open(RES_DIR / 'plate.png').resize((1420, 230))
         self._im.alpha_composite(plate, (390, 100))
@@ -279,8 +276,9 @@ class DrawBest(Draw):
             pass
 
         self._im.alpha_composite(rating_header, (620, 280))
-        rating_str = f'{self.data.rating:04d}'
+        rating_str = f'{self.data.rating:05d}'
         rating_str = rating_str[0:2] + '.' + rating_str[2:]
+        print(rating_str)
         for n, i in enumerate(rating_str):
             if n == 0 and i == '0': continue
             if n < 2:
@@ -298,12 +296,12 @@ class DrawBest(Draw):
 
         self._mr.draw(682, 226, 56, self.data.level, (255, 255, 255, 200), 'lm')
         self._sy.draw(774, 217, 40, self.data.user_name, (0, 0, 0, 255), 'lm')
-        self._tb.draw(847, 141, 28, f'B30: {self.data.best_rating / 100:.2f},  B15: {self.data.best_new_rating / 100:.2f}, R10: {self.data.hot_rating / 100:.2f}', (0, 0, 0, 255), 'mm', 3, (255, 255, 255, 255))
+        self._tb.draw(847, 141, 28, f'{self.data.best_rating:.3f} | {self.data.best_new_rating:.3f} | {self.data.calc_rating:.3f}', (0, 0, 0, 255), 'mm', 3, (255, 255, 255, 255))
         # self._mr.draw(1100, 2465, 35, f'Designed by Yuri-YuzuChaN & BlueDeer233 & Hieuzest', (0, 50, 100, 255), 'mm', 3, (255, 255, 255, 255))
 
-        await self.whiledraw(self.data.best_rating_list, 370)
-        await self.whiledraw(self.data.best_new_rating_list, 1430)
-        await self.whiledraw(self.data.hot_rating_list, 1980)
+        await self.whiledraw(self.data.best_rating_list, 380)
+        await self.whiledraw(self.data.best_new_rating_list, 2210)
+        # await self.whiledraw(self.data.hot_rating_list, 1980)
 
         return self._im.resize((1760, 2000)).convert('RGB')
 
